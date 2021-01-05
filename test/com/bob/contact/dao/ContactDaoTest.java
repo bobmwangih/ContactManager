@@ -3,12 +3,26 @@ package com.bob.contact.dao;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+
+import com.bob.contact.model.Contact;
 
 class ContactDaoTest {
-
+	private DriverManagerDataSource dataSource;
+	private ContactDao dao;
 	@Test
 	void testSave() {
-		fail("Not yet implemented");
+		dataSource = new DriverManagerDataSource();
+		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/contactdb");
+		dataSource.setUsername("root");
+		dataSource.setPassword("admin");
+		
+		dao = new ContactDaoImpl(dataSource);
+		
+		Contact contact = new Contact("Bob","bob@gmail.com","Kumasi lane","0121");
+		int result = dao.save(contact);
+		assertTrue(result > 0);
 	}
 
 	@Test

@@ -2,14 +2,24 @@ package com.bob.contact.dao;
 
 import java.util.List;
 
+import javax.sql.DataSource;
+
+import org.springframework.jdbc.core.JdbcTemplate;
+
 import com.bob.contact.model.Contact;
 
 public class ContactDaoImpl implements ContactDao {
 
+	private JdbcTemplate jdbcTemplate;
+	
+	public ContactDaoImpl(DataSource datasource) {
+		this.jdbcTemplate = new JdbcTemplate(datasource);
+	}
+	
 	@Override
-	public int save(Contact contact) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int save(Contact c) {
+		String sql = "Insert into contact (name,email,address,phone) values(?,?,?,?)";
+		return jdbcTemplate.update(sql, c.getName(),c.getEmail(),c.getAddress(),c.getPhone()); //returns the number of rows inserted
 	}
 
 	@Override
@@ -37,3 +47,4 @@ public class ContactDaoImpl implements ContactDao {
 	}
 
 }
+ 

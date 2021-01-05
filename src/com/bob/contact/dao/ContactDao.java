@@ -12,3 +12,4 @@ public interface ContactDao {
 	public List<Contact> list();
 	public Contact get(int id);
 }
+ 
