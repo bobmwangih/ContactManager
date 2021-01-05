@@ -39,7 +39,9 @@ class ContactDaoTest {
 
 	@Test
 	void testDelete() {
-		fail("Not yet implemented");
+		int id =1;
+		int result = dao.delete(id);
+		assertTrue(result >  0);
 	}
 
 	@Test
@@ -49,9 +51,10 @@ class ContactDaoTest {
 
 	@Test
 	void testGet() {
-		 int id =1;
+		 int id =3;
 		 Contact contact = dao.get(id);
 		 assertNotNull(contact);
+		 System.out.println(contact);
 	}
 
 }

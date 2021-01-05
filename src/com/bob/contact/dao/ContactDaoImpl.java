@@ -35,8 +35,8 @@ public class ContactDaoImpl implements ContactDao {
 
 	@Override
 	public int delete(int id) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "Delete from  contact where contact_id ="+id;
+		return jdbcTemplate.update(sql);
 	}
 
 	@Override
