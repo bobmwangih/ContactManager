@@ -49,7 +49,9 @@ class ContactDaoTest {
 
 	@Test
 	void testGet() {
-		fail("Not yet implemented");
+		 int id =1;
+		 Contact contact = dao.get(id);
+		 assertNotNull(contact);
 	}
 
 }
