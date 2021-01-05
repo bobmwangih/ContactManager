@@ -43,7 +43,7 @@ class ContactDaoTest {
 	void testDelete() {
 		int id =1;
 		int result = dao.delete(id);
-		assertTrue(result >  0);
+		assertTrue(result >  0); 
 	}
 
 	@Test
