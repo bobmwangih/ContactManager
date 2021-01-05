@@ -23,9 +23,9 @@ public class ContactDaoImpl implements ContactDao {
 	}
 
 	@Override
-	public int update(Contact contact) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int update(Contact c) {
+		String sql = "Update contact set  name =?,email =?,address=?,phone=? where contact_id=?";
+		return jdbcTemplate.update(sql,c.getName(),c.getEmail(),c.getAddress(),c.getPhone(),c.getId());
 	}
 
 	@Override
