@@ -9,6 +9,7 @@ import javax.sql.DataSource;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.RowMapper;
 
 import com.bob.contact.model.Contact;
 
@@ -35,34 +36,48 @@ public class ContactDaoImpl implements ContactDao {
 
 	@Override
 	public int delete(int id) {
-		String sql = "Delete from  contact where contact_id ="+id;
+		String sql = "Delete from  contact where contact_id =" + id;
 		return jdbcTemplate.update(sql);
 	}
 
 	@Override
 	public List<Contact> list() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		String sql = "Select * from contact";
+
+		RowMapper<Contact> rowMapper = new RowMapper<Contact>() {
+
+			@Override
+			public Contact mapRow(ResultSet rs, int rowNum) throws SQLException {
+				int id = rs.getInt("contact_id");
+				String name = rs.getString("name");
+				String email = rs.getString("email");
+				String address = rs.getString("address");
+				String phone = rs.getString("phone");
+				return new Contact(id, name, email, address, phone);
+			}
+
+		};
+		return jdbcTemplate.query(sql, rowMapper);
+	} 
 
 	@Override
 	public Contact get(int id) {
 		String sql = "Select * from contact where contact_id =" + id;
-		
+
 		ResultSetExtractor<Contact> extractor = new ResultSetExtractor<Contact>() {
 
 			@Override
 			public Contact extractData(ResultSet rs) throws SQLException, DataAccessException {
-				if(rs.next()) {
+				if (rs.next()) {
 					String name = rs.getString("name");
 					String email = rs.getString("email");
 					String address = rs.getString("address");
 					String phone = rs.getString("phone");
-					return new Contact(id,name,email,address,phone);
+					return new Contact(id, name, email, address, phone);
 				}
-					return null;
+				return null;
 			}
-			
+
 		};
 		return jdbcTemplate.query(sql, extractor);
 	}
