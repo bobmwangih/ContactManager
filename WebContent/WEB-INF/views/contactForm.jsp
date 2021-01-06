@@ -11,9 +11,10 @@
 	<div align="center">
 		<h1>New contact/ edit</h1>
 		<form:form action="save" method="post" modelAttribute="contact">
-			<table>
+			<table cellpadding="5">
+				<form:hidden path="id"/>
 				<tr>
-					<td>Name</td>
+					<td>Name</td> 
 					<td><form:input path="name" /></td>
 				</tr>
 				<tr>
@@ -27,9 +28,11 @@
 				<tr>
 					<td>phone</td>
 					<td><form:input path="phone" /></td>
-				</tr>		
+				</tr>
 			</table>
-			<div align ="center"><input type="submit" value="Save" /></div>
+			<div align="center">
+				<input type="submit" value="Save" />
+			</div>
 		</form:form>
 	</div>
 </body>

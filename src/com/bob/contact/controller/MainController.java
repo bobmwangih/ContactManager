@@ -2,6 +2,8 @@ package com.bob.contact.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -37,8 +39,23 @@ public class MainController {
 	
 	@RequestMapping(value ="/save" ,method =RequestMethod.POST)
 	public ModelAndView saveContact(@ModelAttribute Contact contact) {
+		if(contact.getId()==0) {
 		contactDao.save(contact);
+		}else {
+			contactDao.update(contact);
+		}
 		return new ModelAndView("redirect:/");
+		
+	}
+	
+	@RequestMapping(value ="/edit",method = RequestMethod.GET)
+	public ModelAndView editContact(HttpServletRequest request,HttpServletRequest response) {
+		int id = Integer.parseInt(request.getParameter("id"));
+		Contact contact = contactDao.get(id);
+		
+		ModelAndView model = new ModelAndView("contactForm");
+		model.addObject("contact", contact);
+		return model;
 		
 	}
 }

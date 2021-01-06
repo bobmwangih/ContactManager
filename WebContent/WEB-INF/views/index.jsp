@@ -96,7 +96,9 @@ h2 {
 
 	<div align="center">
 		<h1>Contact List</h1>
-		<h3><a href ="New">New Contact</a></h3>
+		<h3>
+			<a href="New">New Contact</a>
+		</h3>
 		<table border="1" cellpadding="5">
 			<tr>
 				<th>No</th>
@@ -106,16 +108,16 @@ h2 {
 				<th>Phone</th>
 				<th>Action</th>
 			</tr>
-			<c:forEach items ="${listContact}" var="contact" varStatus="status">
-			<tr>
-				<td>${status.index + 1}</td>
-				<td>${contact.name}</td>
-				<td>${contact.email}</td>
-				<td>${contact.address}</td>
-				<td>${contact.phone}</td>
-				<td><a href="Edit">Edit</a></td>
-				<td><a href ="Delete">Delete</a></td>
-			</tr>
+			<c:forEach items="${listContact}" var="contact" varStatus="status">
+				<tr>
+					<td>${status.index + 1}</td>
+					<td>${contact.name}</td>
+					<td>${contact.email}</td>
+					<td>${contact.address}</td>
+					<td>${contact.phone}</td>
+					<td><a href="edit?id=${contact.id}">Edit</a></td>
+					<td><a href="delete?id=${contact.id}">Delete</a></td>
+				</tr>
 			</c:forEach>
 		</table>
 	</div>
