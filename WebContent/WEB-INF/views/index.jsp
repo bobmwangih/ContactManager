@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -93,45 +94,30 @@ h2 {
 </head>
 <body>
 
-	<div class="container">
-		<h2>
-			Responsive Tables Using LI <small>Triggers on 767px</small>
-		</h2>
-		<ul class="responsive-table">
-			<li class="table-header">
-				<div class="col col-1">Job Id</div>
-				<div class="col col-2">Customer Name</div>
-				<div class="col col-3">Amount Due</div>
-				<div class="col col-4">Payment Status</div>
-			</li>
-			<li class="table-row">
-				<div class="col col-1" data-label="Job Id">42235</div>
-				<div class="col col-2" data-label="Customer Name">John Doe</div>
-				<div class="col col-3" data-label="Amount">$350</div>
-				<div class="col col-4" data-label="Payment Status">Pending</div>
-			</li>
-			<li class="table-row">
-				<div class="col col-1" data-label="Job Id">42442</div>
-				<div class="col col-2" data-label="Customer Name">Jennifer
-					Smith</div>
-				<div class="col col-3" data-label="Amount">$220</div>
-				<div class="col col-4" data-label="Payment Status">Pending</div>
-			</li>
-			<li class="table-row">
-				<div class="col col-1" data-label="Job Id">42257</div>
-				<div class="col col-2" data-label="Customer Name">John Smith</div>
-				<div class="col col-3" data-label="Amount">$341</div>
-				<div class="col col-4" data-label="Payment Status">Pending</div>
-			</li>
-			<li class="table-row">
-				<div class="col col-1" data-label="Job Id">42311</div>
-				<div class="col col-2" data-label="Customer Name">John
-					Carpenter</div>
-				<div class="col col-3" data-label="Amount">$115</div>
-				<div class="col col-4" data-label="Payment Status">Pending</div>
-			</li>
-		</ul>
+	<div align="center">
+		<h1>Contact List</h1>
+		<h3><a href ="New">New Contact</a></h3>
+		<table border="1" cellpadding="5">
+			<tr>
+				<th>No</th>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Address</th>
+				<th>Phone</th>
+				<th>Action</th>
+			</tr>
+			<c:forEach items ="${listContact}" var="contact" varStatus="status">
+			<tr>
+				<td>${status.index + 1}</td>
+				<td>${contact.name}</td>
+				<td>${contact.email}</td>
+				<td>${contact.address}</td>
+				<td>${contact.phone}</td>
+				<td><a href="Edit">Edit</a></td>
+				<td><a href ="Delete">Delete</a></td>
+			</tr>
+			</c:forEach>
+		</table>
 	</div>
-
 </body>
 </html>

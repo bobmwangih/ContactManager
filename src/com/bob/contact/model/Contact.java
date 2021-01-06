@@ -21,6 +21,10 @@ public class Contact {
 		this.phone = phone;
 	}
 
+	public Contact() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getId() {
 		return id;
 	}
