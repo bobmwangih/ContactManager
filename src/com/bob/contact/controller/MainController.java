@@ -38,17 +38,21 @@ public class MainController {
 		return model;
 	}
 	
+	//handles the save form action
 	@RequestMapping(value ="/save" ,method =RequestMethod.POST)
 	public ModelAndView saveContact(@ModelAttribute Contact contact) {
 		if(contact.getId()==0) {
+			//for new contact
 		contactDao.save(contact);
 		}else {
+			//the form was an edit request
 			contactDao.update(contact);
 		}
 		return new ModelAndView("redirect:/");
 		
 	}
 	
+	//brings up the contactForm  view and captures the id to show
 	@RequestMapping(value ="/edit",method = RequestMethod.GET)
 	public ModelAndView editContact(HttpServletRequest request,HttpServletRequest response) {
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -60,7 +64,7 @@ public class MainController {
 		
 	}
 	
-	
+	//Captures the id in the RequestParam and deletes it
 	@RequestMapping(value ="/delete", method = RequestMethod.GET)
 	public ModelAndView deleteContact(@RequestParam int id) {
 		contactDao.delete(id);

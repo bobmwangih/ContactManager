@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Contact Manager</title>
+<title>Aliens Contact Manager</title>
 </head>
 <body>
 
