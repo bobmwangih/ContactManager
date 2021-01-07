@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bob.contact.dao.ContactDao;
@@ -56,6 +57,14 @@ public class MainController {
 		ModelAndView model = new ModelAndView("contactForm");
 		model.addObject("contact", contact);
 		return model;
+		
+	}
+	
+	
+	@RequestMapping(value ="/delete", method = RequestMethod.GET)
+	public ModelAndView deleteContact(@RequestParam int id) {
+		contactDao.delete(id);
+		return new ModelAndView("redirect:/");
 		
 	}
 }
